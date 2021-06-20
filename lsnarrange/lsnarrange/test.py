@@ -27,7 +27,7 @@ response = requests.get('http://localhost:8000/mgr/classroom?action=list_classro
 pprint.pprint(response.json())
 
 # 进行自动排课
-response = requests.get('http://localhost:8000/mgr/classroom?action=autoarrangeresult')
+response = requests.get('http://localhost:8000/mgr/arrangeclass?action=auto_arrangesult')
 
 # 发送请求给web服务
 pprint.pprint(response.json())

@@ -5,16 +5,17 @@ class AutoArrange:
     def __init__(self):
         # ORM 读入数据，转为 list
 
-        qsCourse = Course.objects.values("Course_Id", "Course_Capacity", "Course_Range", "Teacher_Id")[0:3]
-        qsClassRoom = ClassRoom.objects.values("ClassRoom_Id", "ClassRoom_Capacity")[0:1]
+        qsCourse = Course.objects.values_list("Course_Id", "Course_Capacity", "Course_Range", "Teacher_Id")[0:3]
+        qsClassRoom = ClassRoom.objects.values_list("ClassRoom_Id", "ClassRoom_Capacity")[0:1]
+
         self.listCourse = list(qsCourse)
         self.listClassRoom = list(qsClassRoom)
-        self.listCourse.sort(key=(lambda x:x[1]), reverse=True)
-        self.listClassRoom.sort(key=(lambda x:x[1]), reverse=True)
+        self.listCourse.sort(key=lambda x:x[1], reverse=True)
+        self.listClassRoom.sort(key=lambda x:x[1], reverse=True)
 
         # 初始化时间池与结果列表
         self.timePool = [-1]*13*7*len(self.listClassRoom)
-        self.listResult = [[0] * 4]*len(self.listCourse)
+        self.listResult = [[0] * 4] * len(self.listCourse)
 
     def confict_teacher(self, teacher_id, time):
         # 检查同一时间点 time 其他教室是否已安排该教师 teacher_id
@@ -40,17 +41,17 @@ class AutoArrange:
                     # 检查是否可安排
                     courseRange = self.listCourse[i][2]
                     can_insert=True
-                    room = int(j / len(self.listClassRoom))
-                    day_in_week = int((j % len(self.listClassRoom)) / 7)
+                    room = int(j / (7*13))
+                    day_in_week = int(int(j % (7*13)) / 7)
                     for k in range(courseRange):
                                 # 判断该时间点该教室是否已安排
                                 # 判断在同一个教室
                                 # 判断在同一天
                                 # 判读教师冲突
                         if self.timePool[j+k] == True \
-                                or int(((j+k) / len(self.listClassRoom))) != room \
-                                or int(((j % len(self.listClassRoom)) / 7)) != day_in_week \
-                                or self.confict_teacher(self.listCourse[i][3], (j % len(self.listClassRoom))):
+                                or int(((j+k) / (7*13))) != room \
+                                or int((int((j+k) % (7*13)) / 7)) != day_in_week \
+                                or self.confict_teacher(self.listCourse[i][3], int((j+k) % (7*13))):
                             can_insert=False
                             break
                     if can_insert==True:
@@ -62,6 +63,7 @@ class AutoArrange:
                         self.listResult[i][2]=int(((j % len(self.listClassRoom)) / 7))
                         self.listResult[i][3]=self.listResult[i][2]+courseRange-1
                         done=True
+                        break
 
             if done == False:
                 arranged = False
