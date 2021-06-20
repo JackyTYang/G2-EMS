@@ -6,6 +6,6 @@ urlpatterns = [
 
     path('classroom/', classroom.classroomdispatcher),
 
-    path('arrangeclass/',arrangeclass.arrangeclassdispatcher())
+    path('arrangeclass/',arrangeclass.arrangeclassdispatcher)
 
 ]

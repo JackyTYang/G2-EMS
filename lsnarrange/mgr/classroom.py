@@ -41,6 +41,7 @@ def listclassroom(request):
     # 否则不能 被 转化为 JSON 字符串
     retlist = list(qs)
 
+
     return JsonResponse({'ret': 0, 'retlist': retlist})
 
 

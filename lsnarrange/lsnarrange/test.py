@@ -15,13 +15,19 @@ payload = {
 }
 
 # 发送请求给web服务
-response = requests.post('http://localhost/mgr/classroom',
+response = requests.post('http://localhost:8000/mgr/classroom',
               json=payload)
 
-pprint.pprint(response.json())
+# pprint.pprint(response.json())
 
 # 构建查看 客户信息的消息体
-response = requests.get('http://localhost/mgr/classroom?action=list_classroom')
+response = requests.get('http://localhost:8000/mgr/classroom?action=list_classroom')
+
+# 发送请求给web服务
+pprint.pprint(response.json())
+
+# 进行自动排课
+response = requests.get('http://localhost:8000/mgr/classroom?action=autoarrangeresult')
 
 # 发送请求给web服务
 pprint.pprint(response.json())
