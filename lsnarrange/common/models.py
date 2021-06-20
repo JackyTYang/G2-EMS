@@ -33,7 +33,7 @@ class Course(models.Model):
     Course_year = models.IntegerField()
 
     # 教师姓名
-    Teacher_Id = models.IntegerField(unique=True)
+    Teacher_Id = models.IntegerField()
 
     # 课程容量
     Course_Capacity = models.IntegerField()
@@ -43,10 +43,10 @@ class Course(models.Model):
 
 class ArrangeResult(models.Model):
     # 课程唯一id
-    Course_Id = models.IntegerField(primary_key=True, unique=True)
+    Course_Id = models.IntegerField(primary_key=True)
 
     # 教室唯一id
-    ClassRoom_Id = models.IntegerField(unique=True)
+    ClassRoom_Id = models.IntegerField()
 
     # 课程开始
     Course_beg = models.IntegerField()

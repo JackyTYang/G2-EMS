@@ -23,7 +23,7 @@ def arrangeclassdispatcher(request):
         return listarrangeresult(request)
     elif action == 'modify_arrangeresult':
         return modifyarrangeresult(request)
-    elif action == 'auto_arrangesult':
+    elif action == 'auto_arrangeresult':
         return autoarrangeresult(request)
     elif action == 'del_arrangeresult':
         return deletearrangeresult(request)
@@ -49,7 +49,7 @@ def autoarrangeresult(request):
     if ar.process() == False:
         return JsonResponse({'ret': 1, 'msg': '自动排课失败'})
 
-    record = ArrangeResult()
+    record = ArrangeResult.objects.all().delete()
     for i in ar.listResult:
         record = ArrangeResult.objects.create(
             Course_Id=i[0],
