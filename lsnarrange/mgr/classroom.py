@@ -34,15 +34,48 @@ def classroomdispatcher(request):
 
 
 def listclassroom(request):
-    # 返回一个 QuerySet 对象 ，包含所有的表记录
+    # 获取参数 data是用户检索的数据
+    data = request.params['data']
+    # confirm 是 用来判断用户是否确认查询
+    confirm = request.params['confirm']
     qs = ClassRoom.objects.values()
-
-    # 将 QuerySet 对象 转化为 list 类型
-    # 否则不能 被 转化为 JSON 字符串
-    retlist = list(qs)
-
-
-    return JsonResponse({'ret': 0, 'retlist': retlist})
+    # 根据data数据 进行过滤
+    if 'id' in data:
+        qs = qs.filter(ClassRoom_Id=data['id'])
+    if 'name' in data:
+        qs = qs.filter(ClassRoom_Name=data['name'])
+    if 'capacity' in data:
+        qs = qs.filter(ClassRoom_Capacity=data['capacity'])
+    if 'building' in data:
+        qs = qs.filter(Teaching_Building=data['building'])
+    if 'district' in data:
+        qs = qs.filter(District=data['district'])
+    # 定义用来返回的数据集合
+    ClassRoom_Id_set = set({})
+    ClassRoom_Name_set = set({})
+    ClassRoom_Capacity_set = set({})
+    Teaching_Building_set = set({})
+    District_set = set({})
+    retlist = []
+    # 根据数据将返回的数据进行统计
+    for dict in qs:
+        for key, value in dict.items():
+            if key == 'ClassRoom_Id':
+                ClassRoom_Id_set.add(value)
+            if key == 'ClassRoom_Name':
+                ClassRoom_Name_set.add(value)
+            if key == 'ClassRoom_Capacity':
+                ClassRoom_Capacity_set.add(value)
+            if key == 'Teaching_Building':
+                Teaching_Building_set.add(value)
+            if key == 'District':
+                District_set.add(value)
+    if confirm == 1:
+        retlist = list(qs)
+    # retlist 是用来返回的查询结果 其他都是 应该提示用户的参数
+    return JsonResponse({'ret': 0, 'retlist': retlist, 'classroom_id': list(ClassRoom_Id_set),
+                         'classroom_name': list(ClassRoom_Name_set), 'classroom_capacity': list(ClassRoom_Capacity_set),
+                         'teaching_building': list(Teaching_Building_set), 'district': list(District_set)})
 
 
 def addclassroom(request):
