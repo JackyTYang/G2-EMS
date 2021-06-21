@@ -24,5 +24,6 @@ response = requests.post('http://127.0.0.1:8000/mgr/classroom/?', data=json.dump
 # 发送请求给web服务
 # pprint.pprint 只是用来进行格式化输出
 
+pprint.pprint(response.json)
 # pprint.pprint(response.json) 返回json格式的结果
 # pprint.pprint(response)  返回 (response 200) 这样的提示

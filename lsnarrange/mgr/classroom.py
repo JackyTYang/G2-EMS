@@ -17,7 +17,6 @@ def classroomdispatcher(request):
         # 根据接口，POST/PUT/DELETE 请求的消息体都是 json格式
         request.params = json.loads(request.body)
 
-
     # 根据不同的action分派给不同的函数进行处理
     action = request.params['action']
     if action == 'list_classroom':
@@ -61,7 +60,7 @@ def listclassroom(request):
     for dict in qs:
         for key, value in dict.items():
             if key == 'ClassRoom_Id':
-                ClassRoom_Id_set.add(value)
+                ClassRoom_Id_set .add(value)
             if key == 'ClassRoom_Name':
                 ClassRoom_Name_set.add(value)
             if key == 'ClassRoom_Capacity':
@@ -71,15 +70,17 @@ def listclassroom(request):
             if key == 'District':
                 District_set.add(value)
     if confirm == 1:
-        retlist = list(qs)
+           retlist = list(qs)
     # retlist 是用来返回的查询结果 其他都是 应该提示用户的参数
     return JsonResponse({'ret': 0, 'retlist': retlist, 'classroom_id': list(ClassRoom_Id_set),
-                         'classroom_name': list(ClassRoom_Name_set), 'classroom_capacity': list(ClassRoom_Capacity_set),
-                         'teaching_building': list(Teaching_Building_set), 'district': list(District_set)})
+                         'classroom_name': list(ClassRoom_Name_set), 'classroom_capacity': list( ClassRoom_Capacity_set),
+                         'teaching_building': list(Teaching_Building_set),'district':list(District_set)})
+
+
+    return JsonResponse({'ret': 0, 'retlist': retlist})
 
 
 def addclassroom(request):
-
     info    = request.params['data']
 
     # 从请求消息中 获取要添加教室的信息
@@ -92,25 +93,26 @@ def addclassroom(request):
                             District=info['district'])
 
 
-    return JsonResponse({'ret': 0, 'id':record.id})
+    return JsonResponse({'ret': 0, 'id':record.ClassRoom_Id})
 
 
 def modifyclassroom(request):
     # 从请求消息中 获取修改教室的信息
     # 找到该教室，并且进行修改操作
 
-    classroomid = request.params['id']
+    classroomid = request.params['classroom_id']
     newdata = request.params['newdata']
 
     try:
         # 根据 id 从数据库中找到相应的客户记录
-        classroom = ClassRoom.objects.get(id=classroomid)
+        classroom = ClassRoom.objects.get(ClassRoom_Id=classroomid)
     except ClassRoom.DoesNotExist:
         return {
             'ret': 1,
             'msg': f'id 为`{classroomid}`的教室不存在'
         }
-
+    if 'id' in newdata:
+        classroom.ClassRoom_Id = newdata['id']
     if 'name' in newdata:
         classroom.ClassRoom_Name = newdata['name']
     if 'capacity' in newdata:
@@ -121,22 +123,21 @@ def modifyclassroom(request):
         classroom.District = newdata['district']
 
     # 注意，一定要执行save才能将修改信息保存到数据库
-    ClassRoom.save()
-
+    classroom.save()
     return JsonResponse({'ret': 0})
 
 
 def deleteclassroom(request):
 
-    classroomid = request.params['id']
+    classroomid = request.params['classroom_id']
 
     try:
-        # 根据 id 从数据库中找到相应的客户记录
-        classroom = ClassRoom.objects.get(id=classroomid)
+        # 根据 id 从数据库中找到相应的教室记录
+        classroom = ClassRoom.objects.get(ClassRoom_Id=classroomid)
     except ClassRoom.DoesNotExist:
         return  {
                 'ret': 1,
-                'msg': f'id 为`{classroomid}`的客户不存在'
+                'msg': f'id 为`{classroomid}`的教室不存在'
         }
 
     # delete 方法就将该记录从数据库中删除了

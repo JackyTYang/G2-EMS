@@ -82,6 +82,7 @@ def listarrangeresult(request):
                          'Classroom_id': list(Classroom_Id_set), 'Course_beg': list(Course_beg_set),
                          'Course_end': list(Course_end_set)})
 
+
 def autoarrangeresult(request):
     ar = AutoArrange()
     if ar.process() == False:
@@ -131,17 +132,17 @@ def modifyarrangeresult(request):
 
 
 def deletearrangeresult(request):
-    classroomid = request.params['id']
+    data = request.params['data']
+    course_id = data['course_id']
 
     try:
-        # 根据 id 从数据库中找到相应的客户记录
-        classroom = ClassRoom.objects.get(id=classroomid)
+        # 根据 id 从数据库中找到相应的排课结果记录
+        classroom = ArrangeResult.objects.get(Course_Id=course_id)
     except ClassRoom.DoesNotExist:
         return {
             'ret': 1,
-            'msg': f'id 为`{classroomid}`的客户不存在'
+            'msg': f'id 为`{course_id}`的课程安排不存在'
         }
-
     # delete 方法就将该记录从数据库中删除了
     classroom.delete()
 
