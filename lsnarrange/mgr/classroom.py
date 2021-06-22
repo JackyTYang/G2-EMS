@@ -77,9 +77,6 @@ def listclassroom(request):
                          'teaching_building': list(Teaching_Building_set),'district':list(District_set)})
 
 
-    return JsonResponse({'ret': 0, 'retlist': retlist})
-
-
 def addclassroom(request):
     info    = request.params['data']
 

@@ -110,7 +110,7 @@ def autoarrangeresult(request):
 
     record.save()
 
-    return JsonResponse({'ret': 0, 'retlist': arFirst.listResult + arLast.listResult})
+    return JsonResponse({'ret': 0, 'msg': '自动排课成功'})
 
 
 def modifyarrangeresult(request):
