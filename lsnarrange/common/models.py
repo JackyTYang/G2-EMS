@@ -21,46 +21,25 @@ class ClassRoom(models.Model):
 
 
 class Course(models.Model):
-    # 课程唯一id
-    Course_id = models.IntegerField(primary_key = True, unique=True)
-
-    # 课程名字
-    Course_Name = models.CharField(max_length=20)
-
-    # 学分
-    Course_Credit = models.FloatField()
-
-    # 教师
-    Teacher_Id = models.CharField(max_length=20)
-
-    # 学期
-    Course_Term = models.IntegerField()
-
-    # 学年
-    Course_Year = models.IntegerField()
-
-    # 课程容量
-    Course_Capacity = models.IntegerField()
-
-    # 课程总课时
-    Course_Range = models.IntegerField()
-
-    # 介绍
-    Introduction = models.CharField(max_length=200)
-
-    # 预修要求
-    Requirement = models.CharField(max_length=30)
+    Course_id = models.IntegerField(primary_key= True)  #课程号
+    name = models.CharField(max_length=20)  #课程名
+    credit = models.DecimalField(max_digits = 2, decimal_places = 1)  #课程学分
+    capacity = models.IntegerField()  #课程容量
+    teacher_id = models.IntegerField()  #教师号
+    teacher_name = models.CharField(max_length=10)  #教师名
+    term = models.CharField(max_length = 10) #春 夏 秋 秋冬 春夏 短 冬
+    year = models.IntegerField() #年份
+    range = models.IntegerField() #课时
+    #arrangeresult 不能修改
 
 
 class ArrangeResult(models.Model):
     # 课程唯一id
-    # Course_Id = models.IntegerField(primary_key=True)
-
-    # 外键程唯一id
-    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    # 外键 会自动在后面加上一个id
+    Course = models.ForeignKey(Course,on_delete=models.CASCADE)
 
     # 教室唯一id
-    ClassRoom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE)
+    ClassRoom = models.ForeignKey(ClassRoom,on_delete=models.CASCADE)
 
     # 课程开始
     Course_beg = models.IntegerField()
