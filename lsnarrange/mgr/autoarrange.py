@@ -3,15 +3,23 @@ from common.models import ClassRoom
 
 
 class AutoArrange:
-    def __init__(self):
+    def __init__(self, isfirst):
         # ORM 读入数据，转为 list
-
-        qsCourseLong = Course.objects.filter(Course_term=12).values_list("Course_Id", "Course_Capacity", "Course_Range",
-                                                                         "Teacher_Id")
-        qsCourseShort1 = Course.objects.filter(Course_term=1).values_list("Course_Id", "Course_Capacity",
+        if isfirst:
+            qsCourseLong = Course.objects.filter(Course_Term=12).values_list("Course_Id", "Course_Capacity", "Course_Range",
+                                                                             "Teacher_Id")
+            qsCourseShort1 = Course.objects.filter(Course_Term=1).values_list("Course_Id", "Course_Capacity",
+                                                                              "Course_Range", "Teacher_Id")
+            qsCourseShort2 = Course.objects.filter(Course_Term=2).values_list("Course_Id", "Course_Capacity",
                                                                           "Course_Range", "Teacher_Id")
-        qsCourseShort2 = Course.objects.filter(Course_term=2).values_list("Course_Id", "Course_Capacity",
-                                                                          "Course_Range", "Teacher_Id")
+        else:
+            qsCourseLong = Course.objects.filter(Course_Term=34).values_list("Course_Id", "Course_Capacity",
+                                                                             "Course_Range",
+                                                                             "Teacher_Id")
+            qsCourseShort1 = Course.objects.filter(Course_Term=3).values_list("Course_Id", "Course_Capacity",
+                                                                              "Course_Range", "Teacher_Id")
+            qsCourseShort2 = Course.objects.filter(Course_Term=4).values_list("Course_Id", "Course_Capacity",
+                                                                              "Course_Range", "Teacher_Id")
 
         qsClassRoom = ClassRoom.objects.values_list("ClassRoom_Id", "ClassRoom_Capacity")
 

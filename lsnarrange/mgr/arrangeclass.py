@@ -2,6 +2,7 @@ from django.http import JsonResponse
 import json
 from common.models import ClassRoom
 from common.models import ArrangeResult
+from common.models import Course
 from mgr.autoarrange import AutoArrange
 
 
@@ -84,12 +85,22 @@ def listarrangeresult(request):
 
 
 def autoarrangeresult(request):
-    ar = AutoArrange()
-    if ar.process() == False:
+
+    arFirst = AutoArrange(True)
+    arLast = AutoArrange(False)
+
+    if arFirst.process() == False and arLast.process() == False :
         return JsonResponse({'ret': 1, 'msg': '自动排课失败'})
 
     record = ArrangeResult.objects.all().delete()
-    for i in ar.listResult:
+    for i in arFirst.listResult:
+        record = ArrangeResult.objects.create(
+            Course_Id=i[0],
+            ClassRoom_Id=i[1],
+            Course_beg=i[2],
+            Course_end=i[3]
+        )
+    for i in arLast.listResult:
         record = ArrangeResult.objects.create(
             Course_Id=i[0],
             ClassRoom_Id=i[1],
@@ -99,7 +110,7 @@ def autoarrangeresult(request):
 
     record.save()
 
-    return JsonResponse({'ret': 0, 'retlist': ar.listResult})
+    return JsonResponse({'ret': 0, 'retlist': arFirst.listResult + arLast.listResult})
 
 
 def modifyarrangeresult(request):
@@ -115,7 +126,7 @@ def modifyarrangeresult(request):
     except ClassRoom.DoesNotExist:
         return {
             'ret': 1,
-            'msg': f'id 为`{classroomid}`的课程安排不存在'
+            'msg': f'id 为`{course_id}`的课程安排不存在'
         }
     # 如果有该Id的记录
     if 'classroom_id' in newdata:

@@ -19,27 +19,38 @@ class ClassRoom(models.Model):
     # 校区
     District = models.CharField(max_length=10)
 
+
 class Course(models.Model):
     # 课程唯一id
     Course_Id = models.IntegerField(primary_key = True, unique=True)
 
     # 课程名字
-    Course_Name = models.CharField(max_length=10)
+    Course_Name = models.CharField(max_length=20)
+
+    # 学分
+    Course_Credit = models.FloatField()
+
+    # 教师
+    Teacher_Id = models.CharField(max_length=20)
 
     # 学期
-    Course_term = models.IntegerField()
+    Course_Term = models.IntegerField()
 
     # 学年
-    Course_year = models.IntegerField()
-
-    # 教师姓名
-    Teacher_Id = models.IntegerField()
+    Course_Year = models.IntegerField()
 
     # 课程容量
     Course_Capacity = models.IntegerField()
 
     # 课程总课时
     Course_Range = models.IntegerField()
+
+    # 介绍
+    Introduction = models.CharField(max_length=200)
+
+    # 预修要求
+    Requirement = models.CharField(max_length=30)
+
 
 class ArrangeResult(models.Model):
     # 课程唯一id
