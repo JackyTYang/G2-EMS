@@ -95,15 +95,15 @@ def autoarrangeresult(request):
     record = ArrangeResult.objects.all().delete()
     for i in arFirst.listResult:
         record = ArrangeResult.objects.create(
-            Course_Id=i[0],
-            ClassRoom_Id=i[1],
+            Course_id=i[0],
+            ClassRoom_id=i[1],
             Course_beg=i[2],
             Course_end=i[3]
         )
     for i in arLast.listResult:
         record = ArrangeResult.objects.create(
-            Course_Id=i[0],
-            ClassRoom_Id=i[1],
+            Course_id=i[0],
+            ClassRoom_id=i[1],
             Course_beg=i[2],
             Course_end=i[3]
         )

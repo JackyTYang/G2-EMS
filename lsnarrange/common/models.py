@@ -5,7 +5,7 @@ from django.db import models
 
 class ClassRoom(models.Model):
     # 教室唯一id
-    ClassRoom_Id = models.IntegerField(primary_key = True, unique=True)
+    ClassRoom_id = models.IntegerField(primary_key = True, unique=True)
 
     # 教室名字,如:208
     ClassRoom_Name = models.CharField(max_length=10)
@@ -22,7 +22,7 @@ class ClassRoom(models.Model):
 
 class Course(models.Model):
     # 课程唯一id
-    Course_Id = models.IntegerField(primary_key = True, unique=True)
+    Course_id = models.IntegerField(primary_key = True, unique=True)
 
     # 课程名字
     Course_Name = models.CharField(max_length=20)
@@ -54,10 +54,13 @@ class Course(models.Model):
 
 class ArrangeResult(models.Model):
     # 课程唯一id
-    Course_Id = models.IntegerField(primary_key=True)
+    # Course_Id = models.IntegerField(primary_key=True)
+
+    # 外键程唯一id
+    Course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     # 教室唯一id
-    ClassRoom_Id = models.IntegerField()
+    ClassRoom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE)
 
     # 课程开始
     Course_beg = models.IntegerField()

@@ -6,22 +6,22 @@ class AutoArrange:
     def __init__(self, isfirst):
         # ORM 读入数据，转为 list
         if isfirst:
-            qsCourseLong = Course.objects.filter(Course_Term=12).values_list("Course_Id", "Course_Capacity", "Course_Range",
+            qsCourseLong = Course.objects.filter(Course_Term=12).values_list("Course_id", "Course_Capacity", "Course_Range",
                                                                              "Teacher_Id")
-            qsCourseShort1 = Course.objects.filter(Course_Term=1).values_list("Course_Id", "Course_Capacity",
+            qsCourseShort1 = Course.objects.filter(Course_Term=1).values_list("Course_id", "Course_Capacity",
                                                                               "Course_Range", "Teacher_Id")
-            qsCourseShort2 = Course.objects.filter(Course_Term=2).values_list("Course_Id", "Course_Capacity",
+            qsCourseShort2 = Course.objects.filter(Course_Term=2).values_list("Course_id", "Course_Capacity",
                                                                           "Course_Range", "Teacher_Id")
         else:
-            qsCourseLong = Course.objects.filter(Course_Term=34).values_list("Course_Id", "Course_Capacity",
+            qsCourseLong = Course.objects.filter(Course_Term=34).values_list("Course_id", "Course_Capacity",
                                                                              "Course_Range",
                                                                              "Teacher_Id")
-            qsCourseShort1 = Course.objects.filter(Course_Term=3).values_list("Course_Id", "Course_Capacity",
+            qsCourseShort1 = Course.objects.filter(Course_Term=3).values_list("Course_id", "Course_Capacity",
                                                                               "Course_Range", "Teacher_Id")
-            qsCourseShort2 = Course.objects.filter(Course_Term=4).values_list("Course_Id", "Course_Capacity",
+            qsCourseShort2 = Course.objects.filter(Course_Term=4).values_list("Course_id", "Course_Capacity",
                                                                               "Course_Range", "Teacher_Id")
 
-        qsClassRoom = ClassRoom.objects.values_list("ClassRoom_Id", "ClassRoom_Capacity")
+        qsClassRoom = ClassRoom.objects.values_list("ClassRoom_id", "ClassRoom_Capacity")
 
         self.listCourseLong = list(qsCourseLong)
         self.listCourseShort1 = list(qsCourseShort1)
