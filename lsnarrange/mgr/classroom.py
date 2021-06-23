@@ -12,19 +12,19 @@ def classroomdispatcher(request):
     if request.method == 'GET':
         request.params = request.GET
 
-    # elif request.method == 'POST':
-    #     request.params = request.POST
-    #
-    # elif request.method == 'PUT':
-    #     request.params = request.PUT
-    #
-    # elif request.method == 'DELETE':
-    #     request.params = request.DELETE
+    elif request.method == 'POST':
+        request.params = request.POST
+
+    elif request.method == 'PUT':
+        request.params = request.PUT
+
+    elif request.method == 'DELETE':
+        request.params = request.DELETE
 
     # POST/PUT/DELETE 请求 参数 从 request 对象的 body 属性中获取
-    elif request.method in ['POST','PUT','DELETE']:
-        # 根据接口，POST/PUT/DELETE 请求的消息体都是 json格式
-        request.params = json.loads(request.body)
+    # elif request.method in ['POST','PUT','DELETE']:
+    #     # 根据接口，POST/PUT/DELETE 请求的消息体都是 json格式
+    #     request.params = json.loads(request.body)
 
     # 根据不同的action分派给不同的函数进行处理
     action = request.params['action']
@@ -94,30 +94,34 @@ def classroomdispatcher(request):
 #                          'classroom_name': list(ClassRoom_Name_set), 'classroom_capacity': list( ClassRoom_Capacity_set),
 #                          'teaching_building': list(Teaching_Building_set),'district':list(District_set)})
 
+
 def listclassroom(request):
     # 返回一个 QuerySet 对象 ，包含所有的表记录
     qs = ClassRoom.objects.values()
 
     # 将 QuerySet 对象 转化为 list 类型
     # 否则不能 被 转化为 JSON 字符串
-    retlist = list(qs)
+    # pk = request.GET['district']
 
+    retlist = list(qs)
     return JsonResponse({'ret': 0, 'retlist': retlist})
 
+
 def addclassroom(request):
-    info    = request.params['data']
+    # info    = request.params['data']
+
 
     # 从请求消息中 获取要添加教室的信息
     # 并且插入到数据库中
     # 返回值 就是对应插入记录的对象
-    record = ClassRoom.objects.create(ClassRoom_Name=info['name'] ,
-                            ClassRoom_Id=info['id'] ,
-                            ClassRoom_Capacity=info['capacity'],
-                            Teaching_Building=info['building'],
-                            District=info['district'])
+    record = ClassRoom.objects.create(ClassRoom_Name=request.POST['name'] ,
+                            ClassRoom_id=request.POST['id'] ,
+                            ClassRoom_Capacity=request.POST['capacity'],
+                            Teaching_Building=request.POST['building'],
+                            District=request.POST['district'])
 
 
-    return JsonResponse({'ret': 0, 'id':record.ClassRoom_Id})
+    return JsonResponse({'ret': 0, 'id':record.ClassRoom_id})
 
 
 def modifyclassroom(request):

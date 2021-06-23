@@ -8,6 +8,6 @@ urlpatterns = [
 
     path('arrangeclass/',arrangeclass.arrangeclassdispatcher),
 
-    path('classroom/',classroom.addclassroom)
+    # path('classroom/',classroom.addclassroom)
 
 ]
