@@ -16,10 +16,10 @@ payload = {
 }
 
 # 发送请求给web服务
-response = requests.post('http://127.0.0.1:8000/mgr/classroom/?', data=json.dumps(payload))
+# response = requests.post('http://127.0.0.1:8000/mgr/classroom/?', data=json.dumps(payload))
 
 # 构建查看 客户信息的消息体并发送请求
-#response = requests.get('http://localhost:8000/mgr/classroom?action=list_classroom')
+response = requests.get('http://localhost:8000/mgr/classroom?action=list_classroom')
 
 # 发送请求给web服务
 # pprint.pprint 只是用来进行格式化输出

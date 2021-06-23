@@ -36,6 +36,7 @@ class Course(models.Model):
 class ArrangeResult(models.Model):
     # 课程唯一id
     # 外键 会自动在后面加上一个id
+
     Course = models.ForeignKey(Course,on_delete=models.CASCADE)
 
     # 教室唯一id

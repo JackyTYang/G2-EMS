@@ -4,8 +4,10 @@ from mgr import classroom,arrangeclass
 
 urlpatterns = [
 
-    path('classroom/', classroom.classroomdispatcher),
+    # path('classroom/', classroom.classroomdispatcher),
 
-    path('arrangeclass/',arrangeclass.arrangeclassdispatcher)
+    path('arrangeclass/',arrangeclass.arrangeclassdispatcher),
+
+    path('classroom/',classroom.addclassroom)
 
 ]
