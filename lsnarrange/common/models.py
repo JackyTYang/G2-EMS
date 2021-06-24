@@ -25,7 +25,7 @@ class Course(models.Model):
     name = models.CharField(max_length=20)  #课程名
     credit = models.DecimalField(max_digits = 2, decimal_places = 1)  #课程学分
     capacity = models.IntegerField()  #课程容量
-    teacher_id = models.IntegerField()  #教师号
+    teacher_id = models.CharField(max_length=15)  #教师号
     teacher_name = models.CharField(max_length=10)  #教师名
     term = models.CharField(max_length = 10) #春 夏 秋 秋冬 春夏 短 冬
     year = models.IntegerField() #年份

@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <title>教学资源管理-修改教室信息</title>
 <script src="js/jquery.js"></script>
-<link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/style-responsive.css" rel="stylesheet">
-<link href="css/default-theme.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link href="css/bootstrap-reset.css" rel="stylesheet">
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/style-responsive.css" rel="stylesheet">
+<link href="/static/css/default-theme.css" rel="stylesheet">
+<link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/bootstrap-reset.css" rel="stylesheet">
 </head>
 <body class="sticky-header">
 <section>
@@ -74,8 +74,7 @@
       </ol>
       <h3>修改教室信息</h3>
     </div>
-    <form role="form" class="form-inline" action="/mgr/classroom" method="GET">
-        {% csrf_token %}
+    <form role="form" class="form-inline" action="/mgr/list_classroom" method="GET">
         <div class="panel panel_default">
             <div class="panel-heading text-center">
                 <strong>请选择需要调整的教学资源</strong>

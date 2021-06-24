@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # path('mgr/',include('mgr.urls')),
-    path('mgr/classroom',classroom.addclassroom)
+    path('mgr/add_classroom',classroom.addclassroom),
+
+    path('mgr/list_classroom',classroom.listclassroom)
 
 ]+  static("/", document_root="./templates")
