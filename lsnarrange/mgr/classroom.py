@@ -73,12 +73,12 @@ def listclassroom(request):
     # confirm 是 用来判断用户是否确认查询
     qs = ClassRoom.objects.all()
     # 根据data数据 进行过滤
-    if 'name' in request.POST and request.POST['name'] != "":
-        qs = qs.filter(ClassRoom_Name=request.POST['name'])
-    if 'building' in request.POST and request.POST['building'] != "":
-        qs = qs.filter(Teaching_Building=request.POST['building'])
-    if 'district' in request.POST and request.POST['district'] != "":
-        qs = qs.filter(District=request.POST['district'])
+    if 'name' in request.GET and request.GET['name'] != "":
+        qs = qs.filter(ClassRoom_Name=request.GET['name'])
+    if 'building' in request.GET and request.GET['building'] != "":
+        qs = qs.filter(Teaching_Building=request.GET['building'])
+    if 'district' in request.GET and request.GET['district'] != "":
+        qs = qs.filter(District=request.GET['district'])
 
     # retlist = list(qs)
     # print(retlist)
@@ -147,7 +147,7 @@ def modifyclassroom(request):
 
 def deleteclassroom(request):
 
-    classroomid = request.POST['id']
+    classroomid = request.GET['courseid']
 
     try:
         # 根据 id 从数据库中找到相应的教室记录

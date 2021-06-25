@@ -74,7 +74,7 @@
       </ol>
       <h3>修改教室信息</h3>
     </div>
-    <form role="form" class="form-inline" action="/mgr/list_classroom" method="POST">
+    <form role="form" class="form-inline" action="/mgr/list_classroom" method="GET">
         {% csrf_token %}
         <div class="panel panel_default">
             <div class="panel-heading text-center">
@@ -150,8 +150,8 @@
                         <td>{{ row.ClassRoom_Name }}</td>
                         <td>{{ row.ClassRoom_Capacity }}</td>
                         <td>
-                            <a class="btn btn-primary" href="/mgr/modify_classroom/?id={{ row.ClassRoom_id }}">修改</a>
-                            <a class="btn btn-primary" href="/mgr/delete_classroom/?id={{ row.ClassRoom_id }}">删除</a>
+                            <a class="btn btn-primary" href="/mgr/modify_classroom?courseid={{ row.ClassRoom_id }}">修改</a>
+                            <a class="btn btn-primary" href="/mgr/delete_classroom?courseid={{ row.ClassRoom_id }}">删除</a>
                         </td>
                     </tr>
                     {% endfor %}
