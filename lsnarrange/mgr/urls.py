@@ -14,7 +14,19 @@ urlpatterns = [
 
     path('modify_classroom',classroom.modifyclassroom),
 
-    path('delete_classroom',classroom.deleteclassroom)
+    path('delete_classroom',classroom.deleteclassroom),
+
+    path('initialaddclassroom', classroom.initialaddclassroom),
+
+    path('initialmodifyclassroom',classroom.initialmodifyclassroom),
+
+    path('initialautoarrange',classroom.initialautoarrange),
+
+    path('initialquerylesson',classroom.initialquerylesson),
+
+    path('initialmodifylesson',classroom.initialmodifylesson),
+
+    path('initialqueryclassroom',classroom.initialqueryclassroom)
 
 
 ]

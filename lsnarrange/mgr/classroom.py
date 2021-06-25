@@ -49,6 +49,24 @@ from common.models import ClassRoom
 #                          'classroom_name': list(ClassRoom_Name_set), 'classroom_capacity': list( ClassRoom_Capacity_set),
 #                          'teaching_building': list(Teaching_Building_set),'district':list(District_set)})
 
+def initialaddclassroom(request):
+    return render(request, '添加教室信息.html')
+
+def initialmodifyclassroom(request):
+    return render(request,'修改教室信息.html')
+
+def initialmodifylesson(request):
+    return render(request,'手动课程调整.html')
+
+def initialautoarrange(request):
+    return render(request,'自动排课.html')
+
+def initialquerylesson(request):
+    return render(request,'排课结果查询-条件查询.html')
+
+def initialqueryclassroom(request):
+    return render(request,'查询教室课表.html')
+
 def listclassroom(request):
     # # 获取参数 data是用户检索的数据
     # data = request.POST['data']
@@ -92,8 +110,8 @@ def addclassroom(request):
                             Teaching_Building=request.POST['building'],
                             District=request.POST['district'])
 
-
-    return JsonResponse({'ret': 0, 'id':record.ClassRoom_id})
+    return render(request, '添加教室信息.html')
+    # return JsonResponse({'ret': 0, 'id':record.ClassRoom_id})
 
 
 def modifyclassroom(request):
