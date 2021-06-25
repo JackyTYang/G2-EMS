@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>手动课程调整</title>
+<script src="js/jquery.js"></script>
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/style-responsive.css" rel="stylesheet">
+<link href="/static/css/default-theme.css" rel="stylesheet">
+<link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/bootstrap-reset.css" rel="stylesheet">
+</head>
+<body class="sticky-header">
+<section>
+  <div class="sidebar-left">
+    <div class="sidebar-left-info">
+      <div class=" search-field"> </div>
+      <ul class="nav nav-pills nav-stacked side-navigation">
+        <li class="menu-list"> <a href=""> <i class="glyphicon glyphicon-th-list"> </i><span>自动排课</span></a>
+          <ul class="child-list">
+            <li><a href="自动排课.html">自动排课</a></li>
+          </ul>
+        </li>
+        <li class="menu-list nav-active"> <a href=""> <i class="glyphicon glyphicon-edit"> </i><span> 手动课程调整</span></a>
+          <ul class="child-list">
+            <li class="active"><a href="手动课程调整.html">手动课程调整</a></li>
+          </ul>
+        </li>
+        <li class="menu-list"><a href=""> <i class="glyphicon glyphicon-erase"></i><span> 教学资源管理</span></a>
+          <ul class="child-list">
+            <li><a href="添加教室信息.html">添加教室信息</a></li>
+            <li><a href="修改教室信息.html">修改教室信息</a></li>
+          </ul>
+        </li>
+        <li class="menu-list"><a href=""> <i class="glyphicon glyphicon-search"></i><span> 排课结果查询</span></a>
+          <ul class="child-list">
+            <li><a href="排课结果查询-条件查询.html">查询教师课表</a></li>
+            <li><a href="查询教室课表.html">查询教室课表</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="body-content" >
+    <div class="header-section">
+      <div class="logo dark-logo-bg"> <a href="自动排课.html"> <i class="glyphicon glyphicon-list-alt" ></i>
+        <!--<i class="fa fa-maxcdn"></i>--> 
+        <span class="brand-name" style="font-size: 16px; font-weight: bold;">课程安排子系统</span> </a> </div>
+      <div class="icon-logo dark-logo-bg hidden-xs hidden-sm"> <a href="自动排课.html"><i class="glyphicon glyphicon-list-alt" alt=""></i> </a> </div>
+      <a class="toggle-btn"><i class="fa fa-outdent"></i></a>
+      <div class="kouhao">课程安排</div>
+      <div class="notification-wrap">
+        <div class="right-notification">
+          <ul class="notification-menu">
+            <li><a href="#" class="btn btn-default dropdown-toggle">返回首页</a></li>
+            <li  class="dropdown">
+              <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false"> <i class="fa  fa-cogs"></i> 账号设置  <b class=" fa fa-angle-down"></b></a>
+              <ul role="menu" class="dropdown-menu language-switch">
+                <li>
+                  <a  href="修改密码.html">修改密码</a>
+                </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:;" class="btn btn-default  dropdown-toggle"> <i class="fa fa-sign-out"></i>退出登录 </a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="page-head">
+      <ol class="breadcrumb">
+        <li><a href="#">手动课程调整</a></li>
+        <li  class="active">手动课程调整</li>
+      </ol>
+      <h3>调整课程</h3>
+    </div>
+    <form role="form" class="form-inline" action="#" method="POST">
+        <div class="panel panel_default">
+            <div class="panel-heading text-center">
+                <strong>请选择需要调整的课程</strong>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="input-group" for="cid">课程号</label>
+                    <div>
+                        <input type="text" class="form-control" name="cid" placeholder="课程号" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="input-group" for="cname">课程名称</label>
+                    <div>
+                        <input type="text" class="form-control" name="cname" placeholder="课程名称" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="input-group" for="teacher">教师</label>
+                    <div>
+                        <input type="text" class="form-control" name="teacher" placeholder="教师" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="input-group" for="room">教室</label>
+                    <div>
+                        <select class="form-control" name="room" readonly>
+                            <option> </option>
+                            <option>西1-101</option>
+                            <option>西1-102</option>
+                            <option>西1-103</option>
+                            <option>西1-104</option>
+                            <option>西1-211</option>
+                            <option>西1-212</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="input-group" for="day">课程时间</label>
+                    <div>
+                        <select class="form-control" name="day" readonly>
+                            <option> </option>
+                            <option>星期一</option>
+                            <option>星期二</option>
+                            <option>星期三</option>
+                            <option>星期四</option>
+                            <option>星期五</option>
+                            <option>星期六</option>
+                            <option>星期日</option>
+                        </select>
+                        :
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="input-group" for="time">时间段</label>
+                    <div>
+                        <select class="form-control" name="time" readonly>
+                            <option> </option>
+                            <option>8:00-8:45</option>
+                            <option>8:50-9:35</option>
+                            <option>9:50-10:35</option>
+                            <option>10:40-11:25</option>
+                            <option>11:30-12:15</option>
+                            <option>13:15-14:00</option>
+                            <option>14:05-14:50</option>
+                            <option>14:55-15:40</option>
+                            <option>15:55-16:40</option>
+                            <option>16:45-17:30</option>
+                            <option>18:30-19:15</option>
+                            <option>19:20-20:05</option>
+                            <option>20:00-20:55</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-primary btn-block" style="margin-left: 10px;" value="查询相关课程">
+        </div>
+    </form>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h5>共查询到 2 条相关记录：</h5>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>课程号</th>
+                        <th>课程名称</th>
+                        <th>任课教师</th>
+                        <th>上课时间</th>
+                        <th>教室</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>821T0150</th>
+                        <th>微积分（甲）I</th>
+                        <th>李军</th>
+                        <th>周一3,4,5节<br>周三9,10节</th>
+                        <th>西1-102</th>
+                        <th><input type="button" class="btn btn-primary" value="调整"></th>
+                    </tr>
+                    <tr>
+                        <th>821T0190</th>
+                        <th>线性代数（甲）</th>
+                        <th>李军</th>
+                        <th>周二6,7,8节<br>周四1,2节</th>
+                        <th>西1-211</th>
+                        <th><input type="button" class="btn btn-primary" value="调整"></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  <div class="text-center">
+      <ul class="pagination">
+          <li class="page-item">
+              <a class="page-link" href="#">&laquo;</a>
+          </li>
+          <li class="page-item">
+              <a class="page-link" href="#">1</a>
+          </li>
+          <li class="page-item">
+              <a class="page-link" href="#">&raquo;</a>
+          </li>
+      </ul>
+  </div>
+  </div>
+</section>
+	
+<script src="js/bootstrap.js"></script> 
+<script src="js/echarts.min.js"></script> 
+<script src="js/scripts.js"></script> 
+<script src="laydate/laydate.js"></script> 
+<script>
+lay('#version').html('-v'+ laydate.v);
+laydate.render({
+    elem: '#test1'
+  ,range: true
+  ,theme: '#1890ff'
+});
+</script>
+</body>
+</html>

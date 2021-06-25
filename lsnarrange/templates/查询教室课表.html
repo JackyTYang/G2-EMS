@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>查询教室课表</title>
+<script src="js/jquery.js"></script>
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/style-responsive.css" rel="stylesheet">
+<link href="/static/css/default-theme.css" rel="stylesheet">
+<link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/bootstrap-reset.css" rel="stylesheet">
+</head>
+<body class="sticky-header">
+<section>
+  <div class="sidebar-left">
+    <div class="sidebar-left-info">
+      <div class=" search-field"> </div>
+      <ul class="nav nav-pills nav-stacked side-navigation">
+        <li class="menu-list"> <a href=""> <i class="glyphicon glyphicon-th-list"> </i><span>自动排课</span></a>
+          <ul class="child-list">
+            <li><a href="自动排课.html">自动排课</a></li>
+          </ul>
+        </li>
+        <li class="menu-list "> <a href=""> <i class="glyphicon glyphicon-edit"> </i><span> 手动课程调整</span></a>
+          <ul class="child-list">
+            <li><a href="手动课程调整.html">手动课程调整</a></li>
+          </ul>
+        </li>
+        <li class="menu-list"><a href=""> <i class="glyphicon glyphicon-erase"></i><span> 教学资源管理</span></a>
+          <ul class="child-list">
+            <li><a href="添加教室信息.html">添加教室信息</a></li>
+            <li><a href="修改教室信息.html">修改教室信息</a></li>
+          </ul>
+        </li>
+        <li class="menu-list nav-active"><a href=""> <i class="glyphicon glyphicon-search"></i><span> 排课结果查询</span></a>
+          <ul class="child-list">
+            <li><a href="排课结果查询-条件查询.html">查询教师课表</a></li>
+            <li class="active"><a href="查询教室课表.html">查询教室课表</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="body-content" >
+    <div class="header-section">
+      <div class="logo dark-logo-bg"> <a href="自动排课.html"> <i class="glyphicon glyphicon-list-alt" ></i>
+        <!--<i class="fa fa-maxcdn"></i>--> 
+        <span class="brand-name" style="font-size: 16px; font-weight: bold;">课程安排子系统</span> </a> </div>
+      <div class="icon-logo dark-logo-bg hidden-xs hidden-sm"> <a href="自动排课.html"><i class="glyphicon glyphicon-list-alt" alt=""></i> </a> </div>
+      <a class="toggle-btn"><i class="fa fa-outdent"></i></a>
+      <div class="kouhao">课程安排</div>
+      <div class="notification-wrap">
+        <div class="right-notification">
+          <ul class="notification-menu">
+            <li><a href="#" class="btn btn-default dropdown-toggle">返回首页</a></li>
+            <li  class="dropdown">
+              <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false"> <i class="fa  fa-cogs"></i> 账号设置  <b class=" fa fa-angle-down"></b></a>
+              <ul role="menu" class="dropdown-menu language-switch">
+                <li>
+                  <a  href="修改密码.html">修改密码</a>
+                </li>
+              </ul>
+            </li>
+            <li> <a href="javascript:;" class="btn btn-default  dropdown-toggle"> <i class="fa fa-sign-out"></i>退出登录 </a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="page-head">
+      <ol class="breadcrumb">
+        <li><a href="#">排课结果查询</a></li>
+        <li  class="active">查询教室课表</li>
+      </ol>
+      <h3>查询教室课表</h3>
+    </div>
+    <form role="form" class="form-inline" action="#" method="POST">
+        <div class="panel panel_default">
+            <div class="panel-heading text-center">
+                <strong>请选择教室</strong>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="sid">校区</label>
+                    <div>
+                        <select class="form-control" name="sid" readonly>
+                            <option> </option>
+                            <option>紫金港校区</option>
+                            <option>玉泉校区</option>
+                            <option>西溪校区</option>
+                            <option>华家池校区</option>
+                            <option>海宁国际校区</option>
+                            <option>舟山校区</option>
+                            <option>之江校区</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="building">教学楼</label>
+                    <div>
+                        <select class="form-control" name="building" readonly>
+                            <option> </option>
+                            <option>西1</option>
+                            <option>西2</option>
+                            <option>东1A</option>
+                            <option>东1B</option>
+                            <option>东2</option>
+                            <option>东3</option>
+                            <option>东4</option>
+                            <option>东5</option>
+                            <option>东6</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">教室名称</label>
+                    <div>
+                        <input type="text" class="form-control" id="name" placeholder="教室名称">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-primary btn-block" style="margin-left: 10px;" value="查询教室课表">
+        </div>
+    </form>
+    <div class="panel panel_default">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>日期</th>
+                    <th>时间段</th>
+                    <th>课程名称</th>
+                    <th>任课教师</th>
+                    <th>上课人数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <th>周一</th>
+                    <th>8:00-9:35</th>
+                    <th>大学英语IV</th>
+                    <th>李梅</th>
+                    <th>36</th>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <th>周一</th>
+                    <th>9:50-12:15</th>
+                    <th>高级数据结构</th>
+                    <th>于德升</th>
+                    <th>60</th>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <th>周一</th>
+                    <th>13:15-15:40</th>
+                    <th>信息安全原理</th>
+                    <th>何通亮</th>
+                    <th>50</th>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <th>周一</th>
+                    <th>15:55-17:30</th>
+                    <th>微积分（甲）I</th>
+                    <th>林峰</th>
+                    <th>110</th>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <th>周一</th>
+                    <th>18:30-20:55</th>
+                    <th>中国古代小说鉴赏</th>
+                    <th>李海书</th>
+                    <th>80</th>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#">&laquo;</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">2</a>
+            </li><li class="page-item">
+                <a class="page-link" href="#">3</a>
+            </li><li class="page-item">
+                <a class="page-link" href="#">4</a>
+            </li><li class="page-item">
+                <a class="page-link" href="#">5</a>
+            </li><li class="page-item">
+                <a class="page-link" href="#">...</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+  </div>
+  </div>
+</section>
+	
+<script src="js/bootstrap.js"></script> 
+<script src="js/echarts.min.js"></script> 
+<script src="js/scripts.js"></script> 
+<script src="laydate/laydate.js"></script> 
+<script>
+lay('#version').html('-v'+ laydate.v);
+laydate.render({
+    elem: '#test1'
+  ,range: true
+  ,theme: '#1890ff'
+});
+</script>
+</body>
+</html>

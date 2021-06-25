@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# 静态文件服务
+from django.conf.urls.static import static
+from mgr import classroom
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('mgr/',include('mgr.urls'))
-]
+    # path('mgr/',include('mgr.urls')),
+    # path('mgr/add_classroom',classroom.addclassroom),
+
+    # path('mgr/list_classroom',classroom.listclassroom)
+    path('mgr/', include('mgr.urls'))
+
+
+]+  static("/", document_root="./templates")
